@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import filters, permissions, viewsets
 
 from .models import Book
+from .permissions import IsAuthorToDelete
 from .serializers import BookSerializer, UserSerializer
 
 User = get_user_model()
@@ -29,8 +30,15 @@ class BookViewSet(viewsets.ModelViewSet):
 
     # Define custom permissions for the BookViewSet
     def get_permissions(self):
+        # Allow unrestricted GET operations
         if self.action in ["list", "retrieve"]:
             permission_classes = [permissions.AllowAny]
+        # Allow authenticated users to perform POST operations
+        elif self.action in ["create", "update", "partial_update"]:
+            permission_classes = [permissions.IsAuthenticated]
+        # Allow authors to perform DELETE operations
+        elif self.action == "destroy":
+            permission_classes = [IsAuthorToDelete]
         else:
             permission_classes = [permissions.IsAuthenticated]
         return [permission() for permission in permission_classes]
