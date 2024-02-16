@@ -144,7 +144,6 @@ module.exports = {
   rules: {
     'header-max-length': [2, 'always', 50],
     'body-max-line-length': [2, 'always', 72],
-    'body-empty': [2, 'always'], // Ensure that there is a blank line after the header
   },
 };
 ```

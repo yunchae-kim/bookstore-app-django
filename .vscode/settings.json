@@ -12,6 +12,6 @@
   // ** Flake8 settings ** //
   // Modify line length to match with Black
   "flake8.args": ["--max-line-length=88"],
-  // Ignore settings.py file
-  "flake8.ignorePatterns": ["*/settings.py"]
+  // Ignore settings.py file and migration files
+  "flake8.ignorePatterns": ["*/settings.py", "*/migrations/*.py"]
 }
