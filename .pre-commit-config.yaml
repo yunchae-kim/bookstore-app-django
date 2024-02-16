@@ -23,6 +23,7 @@ repos:
     hooks:
       - id: isort
         name: isort (Python imports)
+        args: ["--profile", "black"]
         exclude: \b(migrations)\b/.*\.py$
 
   - repo: https://github.com/pycqa/flake8
