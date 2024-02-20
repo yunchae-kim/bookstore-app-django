@@ -1,22 +1,27 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .mixins import DisplayNameMixin
 from .models import Book
 
 User = get_user_model()
 
 
-class UserSerializer(DisplayNameMixin, serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     displayed_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ["id", "username", "displayed_name"]
 
+    def get_displayed_name(self, obj):
+        if obj.author_pseudonym:
+            return obj.author_pseudonym
+        else:
+            return obj.get_full_name() or obj.username
 
-class BookSerializer(DisplayNameMixin, serializers.ModelSerializer):
-    displayed_name = serializers.SerializerMethodField()
+
+class BookSerializer(serializers.ModelSerializer):
+    author_displayed_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -24,7 +29,15 @@ class BookSerializer(DisplayNameMixin, serializers.ModelSerializer):
             "id",
             "title",
             "description",
-            "displayed_name",
+            "author",
             "cover_image",
             "price",
+            "author_displayed_name",
         ]
+
+    def get_author_displayed_name(self, obj):
+        author = obj.author
+        if author.author_pseudonym:
+            return author.author_pseudonym
+        else:
+            return author.get_full_name() or author.username

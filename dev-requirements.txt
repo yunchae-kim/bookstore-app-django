@@ -1,1 +1,2 @@
 pre-commit==3.6.1
+django-extensions==3.2.3

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import filters, permissions, viewsets
 
 from .models import Book
-from .permissions import IsAuthorToDelete, is_not_banned
+from .permissions import IsAuthorToDelete, IsNotBanned
 from .serializers import BookSerializer, UserSerializer
 
 User = get_user_model()
@@ -35,10 +35,10 @@ class BookViewSet(viewsets.ModelViewSet):
             permission_classes = [permissions.AllowAny]
         # Allow authenticated users to perform POST operations
         elif self.action in ["create", "update", "partial_update"]:
-            permission_classes = [permissions.IsAuthenticated, is_not_banned]
+            permission_classes = [permissions.IsAuthenticated, IsNotBanned]
         # Allow authors to perform DELETE operations
         elif self.action == "destroy":
-            permission_classes = [IsAuthorToDelete, is_not_banned]
+            permission_classes = [IsAuthorToDelete, IsNotBanned]
         else:
             permission_classes = [permissions.IsAuthenticated]
         return [permission() for permission in permission_classes]
