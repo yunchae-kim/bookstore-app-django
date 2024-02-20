@@ -170,3 +170,26 @@ To ensure commit messages meet our standards, we use `commitlint` with a pre-com
    ```
 
 This setup automatically checks your commit messages against the defined rules each time you commit. To test the hook, try making a commit with a non-compliant message; the hook should prevent the commit and display an error.
+
+### Project Insights and Reflections
+
+Completing this project took approximately 18 hours, significantly exceeding the anticipated 6 hours. This duration reflects the depth of engagement and the challenges encountered throughout the development process. The breakdown of time spent is as follows:
+
+- Understanding task requirements and structuring the project: 1 hour
+- Initial project setup: 1 hour
+- Refreshing Django concepts and best practices: 2 hours
+- Implementing Django models and admin functionality: 2 hours
+- Developing REST API endpoints: 4 hours
+- Writing and refining tests for all endpoints: 3 hours
+- Debugging and refactoring based on test outcomes: 5 hours
+
+The extended debugging phase was largely due to ambiguities in the task requirements, particularly around the definitions of "authenticated user" and the permissions associated with book publishing and unpublishing. The term "authenticated user" was initially unclear—whether it referred to any signed-in user or specifically to authors, as distinguished from administrators in other contexts.
+
+Additionally, the project involved devising a strategy for representing authors' names or pseudonyms on published books, a detail not explicitly outlined in the requirements. After considering real-world publishing practices, I opted for a flexible approach that allows authors to choose between their real name or a pseudonym for their published works.
+
+Despite these challenges, the project meets all specified requirements:
+
+- Functional implementation of all task-related features
+- Successful creation and passing of API tests for all endpoints
+- Documentation through comments and a comprehensive README for setup
+- Application of real-world development practices, including effective git management
