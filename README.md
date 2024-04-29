@@ -42,8 +42,6 @@ going into production - then push your changes to the master branch. After you h
 
 All the best and happy coding,
 
-The InvisAlert Team
-
 # Project Name
 
 Bookstore App
